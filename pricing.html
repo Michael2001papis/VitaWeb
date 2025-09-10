@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>מחירון - VitaWeb הנדימן</title>
+  <meta name="description" content="מחירון שקוף לשירותי הנדימן: אינסטלציה, חשמל, תליית טלוויזיות ונגרות. מחירים הוגנים בערד ומיתר.">
+  <style>
+    :root { --brand:#0ea5e9; --brand-2:#0369a1; --ok:#22c55e; }
+    body { font-family: Arial, Helvetica, sans-serif; background:#f6f7fb; color:#0f172a; margin:0 }
+    .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
+    header { background:#ffffff; border-bottom:1px solid #e2e8f0; position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(8px) }
+    footer { background:#ffffff; border-top:1px solid #e2e8f0; }
+    main { padding: 1.5rem 0; }
+    a { color:#0ea5e9; text-decoration:none }
+    a:hover { text-decoration:underline }
+    .btn { display:inline-block; padding:.7rem 1.1rem; border-radius:.6rem; text-decoration:none }
+    .btn-primary { background:var(--brand); color:#fff }
+    .btn-primary:hover { background:var(--brand-2) }
+    .card { background:#fff; border:1px solid #e2e8f0; border-radius:.6rem; padding:1rem; margin-bottom:1rem }
+    .price-card { background:#fff; border:2px solid var(--brand); border-radius:.8rem; padding:1.5rem; text-align:center; position:relative }
+    .price-card.featured { background:linear-gradient(135deg, #eef6ff, #f0f9ff); border-color:var(--brand-2) }
+    .price { font-size:2rem; font-weight:800; color:var(--brand); margin:.5rem 0 }
+    .muted { color:#475569; font-size:.9rem }
+    .float-cta { position:fixed; left:1rem; bottom:1rem; display:flex; flex-direction:column; gap:.7rem; z-index:40 }
+    .grid { display:grid; gap:1rem }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)) }
+    @media (max-width: 720px){ .grid-3{ grid-template-columns: 1fr } }
+    /* Quote builder */
+    .qb-grid { display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:1rem }
+    @media (max-width: 720px){ .qb-grid{ grid-template-columns: 1fr } }
+    input, select, textarea { width:100%; padding:.6rem; border:1px solid #cbd5e1; border-radius:.4rem; font-family:inherit; box-sizing:border-box }
+    input:focus, select:focus, textarea:focus{ outline:3px solid var(--brand); outline-offset:2px }
+    .total-box{ background:#ffffff; border:2px dashed var(--brand); border-radius:.8rem; padding:1rem }
+    .row{ display:flex; align-items:center; justify-content:space-between; gap:.8rem; margin:.4rem 0 }
+    .contract{ white-space:pre-wrap; line-height:1.6; font-size:.95rem }
+    @media print{
+      header, nav, .float-cta, .no-print{ display:none !important }
+      .contract, .print-area{ display:block }
+      body{ background:#fff }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem;">
+        <div style="display:flex; align-items:center; gap:.6rem;">
+          <a href="index.html" style="display:flex; align-items:center; gap:.6rem; text-decoration:none;">
+            <span style="display:inline-flex; width:36px; height:36px; border-radius:999px; background:var(--brand); color:#fff; align-items:center; justify-content:center; font-weight:bold;">V</span>
+            <div>
+              <div style="font-weight:800;">VitaWeb – הנדימן</div>
+              <div class="muted">תיקון אמין ומהיר</div>
+            </div>
+          </a>
+        </div>
+        <nav style="display:flex; gap:.9rem; font-size:.95rem;">
+          <a href="index.html">בית</a>
+          <a href="services.html">שירותים</a>
+          <a href="pricing.html" style="color:var(--brand); font-weight:600;">מחירון</a>
+          <a href="projects.html">לפני/אחרי</a>
+          <a href="testimonials.html">המלצות</a>
+          <a href="contact.html">צור קשר</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <h1 style="font-weight:800; font-size:2rem; margin:0 0 1rem 0;">מחירון שקוף</h1>
+        <p class="muted" style="margin:0 0 2rem 0;">מחירים הוגנים ושירות מקצועי. כל המחירים כוללים חומרים בסיסיים</p>
+
+        <div class="card print-area">
+          <h2 style="margin:0 0 .8rem 0; color:var(--brand);">מחשבון הצעת מחיר</h2>
+          <div class="qb-grid">
+            <div>
+              <label for="workType" class="muted" style="display:block; margin-bottom:.3rem;">סוג עבודה</label>
+              <select id="workType">
+                <option value="plumbing">אינסטלציה</option>
+                <option value="electric">חשמל</option>
+                <option value="tv">תליית טלוויזיה</option>
+                <option value="carpentry">נגרות</option>
+                <option value="paint">צבע</option>
+                <option value="demolition">פירוק</option>
+                <option value="renovation">שיפוץ כולל</option>
+              </select>
+            </div>
+            <div>
+              <label for="quantity" class="muted" style="display:block; margin-bottom:.3rem;">כמות/שעות</label>
+              <input id="quantity" type="number" min="1" step="1" value="1">
+            </div>
+            <div>
+              <label for="unitPrice" class="muted" style="display:block; margin-bottom:.3rem;">מחיר ליחידה (₪)</label>
+              <input id="unitPrice" type="number" min="0" step="50" value="300">
+            </div>
+            <div>
+              <label for="laborPct" class="muted" style="display:block; margin-bottom:.3rem;">אחוזי עבודה (%)</label>
+              <input id="laborPct" type="number" min="0" max="100" step="5" value="15">
+            </div>
+            <div>
+              <label for="materials" class="muted" style="display:block; margin-bottom:.3rem;">חומרים (₪)</label>
+              <input id="materials" type="number" min="0" step="50" value="0">
+            </div>
+            <div>
+              <label class="muted" style="display:block; margin-bottom:.3rem;">כולל מע"מ</label>
+              <label style="display:inline-flex; align-items:center; gap:.4rem;">
+                <input id="vat" type="checkbox" checked> 17%
+              </label>
+            </div>
+            <div style="grid-column:1 / -1">
+              <label for="includes" class="muted" style="display:block; margin-bottom:.3rem;">כולל</label>
+              <input id="includes" type="text" placeholder="לדוגמה: הגעה, בדיקה, חומרים בסיסיים">
+            </div>
+            <div style="grid-column:1 / -1">
+              <label for="excludes" class="muted" style="display:block; margin-bottom:.3rem;">לא כולל</label>
+              <input id="excludes" type="text" placeholder="לדוגמה: קידוחים מיוחדים, חלקים ייחודיים">
+            </div>
+          </div>
+          <div class="total-box" style="margin-top:1rem;">
+            <div class="row"><span>סכום ביניים</span><strong id="subTotal">₪0</strong></div>
+            <div class="row"><span>עבודה (٪)</span><strong id="laborFee">₪0</strong></div>
+            <div class="row"><span>חומרים</span><strong id="materialsFee">₪0</strong></div>
+            <div class="row"><span>מע"מ</span><strong id="vatFee">₪0</strong></div>
+            <div class="row" style="font-size:1.2rem; border-top:1px solid #e2e8f0; padding-top:.6rem"><span>סה"כ להצעה</span><strong id="grandTotal">₪0</strong></div>
+          </div>
+          <div style="margin-top:1rem; display:flex; gap:.6rem; flex-wrap:wrap" class="no-print">
+            <button id="btnPrint" class="btn btn-primary">הדפסה / שמירה כ-PDF</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 style="margin:0 0 .6rem 0; color:var(--brand);">חוזה עבודה</h2>
+          <div id="contractText" class="contract">
+לקוח יקר,
+הצעת מחיר זו כוללת את הפרטים הבאים:
+• סוג עבודה: <span id="cType"></span>
+• כמות/שעות: <span id="cQty"></span>
+• כולל: <span id="cInc"></span>
+• לא כולל: <span id="cExc"></span>
+• סה"כ לתשלום (כולל/לא כולל מע"מ בהתאם לסימון): <span id="cTotal"></span>
+
+תנאים:
+1. תשלום בסיום העבודה, אלא אם הוסכם אחרת בכתב.
+2. המחיר הסופי עשוי להשתנות במקרה של שינויים/תוספות בשטח.
+3. אחריות לביצוע: 3 חודשים על עבודה, לא כולל בלאי טבעי/נזק חיצוני.
+
+תאריך ושעה: <span id="cDate"></span>
+חתימת הלקוח: ____________    חתימת מבצע העבודה: ____________
+          </div>
+        </div>
+        
+        <div class="grid grid-3">
+          <div class="price-card">
+            <h2 style="margin:0 0 .5rem 0; color:var(--brand);">🔧 אינסטלציה</h2>
+            <div class="price">החל מ־₪200</div>
+            <ul style="text-align:right; margin:1rem 0; padding:0; list-style:none;">
+              <li>תיקון נזילה קטנה: ₪200-300</li>
+              <li>החלפת ברז: ₪250-400</li>
+              <li>תיקון אסלה: ₪300-500</li>
+              <li>התקנת גוף חימום: ₪400-600</li>
+            </ul>
+          </div>
+
+          <div class="price-card featured">
+            <h2 style="margin:0 0 .5rem 0; color:var(--brand-2);">⚡ חשמל</h2>
+            <div class="price">החל מ־₪250</div>
+            <ul style="text-align:right; margin:1rem 0; padding:0; list-style:none;">
+              <li>החלפת שקע: ₪250-350</li>
+              <li>החלפת מפסק: ₪300-400</li>
+              <li>התקנת גוף תאורה: ₪350-500</li>
+              <li>התקנת מאוורר: ₪400-600</li>
+            </ul>
+          </div>
+
+          <div class="price-card">
+            <h2 style="margin:0 0 .5rem 0; color:var(--brand);">📺 תליית טלוויזיה</h2>
+            <div class="price">החל מ־₪250</div>
+            <ul style="text-align:right; margin:1rem 0; padding:0; list-style:none;">
+              <li>מסך עד 55": ₪250-350</li>
+              <li>מסך 55"-75": ₪350-500</li>
+              <li>הסתרת כבלים: +₪100</li>
+              <li>התקנת מערכת שמע: ₪400-600</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="background:#f8fafc; border:1px solid #e2e8f0;">
+          <h2 style="margin:0 0 .5rem 0; color:var(--brand);">ℹ️ הערות חשובות</h2>
+          <ul style="margin:0; padding-right:1rem;">
+            <li>כל המחירים כוללים חומרים בסיסיים</li>
+            <li>מחירים סופיים נקבעים לאחר בדיקה באתר</li>
+            <li>אחריות מלאה על כל העבודות</li>
+            <li>תשלום נוח: מזומן, העברה או צ'ק</li>
+            <li>במרכז הארץ - פרויקטים מעל ₪20,000 בלבד</li>
+          </ul>
+        </div>
+
+        <div style="text-align:center; margin:2rem 0;">
+          <a href="contact.html" class="btn btn-primary" style="font-size:1.1rem; padding:1rem 2rem;">קבלו הצעת מחיר מדויקת</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p style="margin:0 0 .5rem 0;">ליצירת קשר: <a href="tel:+972508535941">050-853-5941</a> · <a href="mailto:dvnka2@gmail.com">dvnka2@gmail.com</a></p>
+      <small>© <span id="year"></span> כל הזכויות שמורות</small>
+    </div>
+  </footer>
+
+  <div class="float-cta">
+    <a href="tel:+972508535941" class="btn btn-primary" style="box-shadow:0 6px 18px #0ea5e933">📞 התקשרות</a>
+    <a href="https://wa.me/972508535941" target="_blank" rel="noopener" class="btn" style="background:var(--ok); color:#fff; box-shadow:0 6px 18px #22c55e33">🟢 וואטסאפ</a>
+  </div>
+  <button id="creditsBtn" class="btn btn-ghost" style="position:fixed; right:1rem; bottom:1rem; z-index:50;">זכויות יוצרים</button>
+  <div id="creditsModal" style="position:fixed; inset:0; background:#0008; display:none; align-items:center; justify-content:center; z-index:50">
+    <div style="background:#fff; border-radius:.8rem; padding:1rem; max-width:520px; width:90%; box-shadow:0 10px 30px #0003" role="dialog" aria-modal="true" aria-labelledby="creditsTitle">
+      <h3 id="creditsTitle" style="margin:0 0 .5rem 0; color:var(--brand);">זכויות יוצרים</h3>
+      <p style="margin:.2rem 0"><strong>הנדימן:</strong> VitaWeb – 050-853-5941</p>
+      <p style="margin:.2rem 0"><strong>מפתח האתר:</strong> מיכאל פפיסמדוב (חתימה: Mpb)</p>
+      <div style="text-align:left; margin-top:1rem;">
+        <button id="closeCredits" class="btn btn-primary">סגור</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const btn = document.getElementById('creditsBtn');
+      const modal = document.getElementById('creditsModal');
+      const closeBtn = document.getElementById('closeCredits');
+      if(btn && modal && closeBtn){
+        btn.addEventListener('click', ()=>{ modal.style.display='flex'; });
+        closeBtn.addEventListener('click', ()=>{ modal.style.display='none'; });
+        modal.addEventListener('click', (e)=>{ if(e.target===modal) modal.style.display='none'; });
+      }
+    })();
+    // Quote builder calc
+    const els = {
+      quantity: document.getElementById('quantity'),
+      unitPrice: document.getElementById('unitPrice'),
+      laborPct: document.getElementById('laborPct'),
+      materials: document.getElementById('materials'),
+      vat: document.getElementById('vat'),
+      includes: document.getElementById('includes'),
+      excludes: document.getElementById('excludes'),
+      subTotal: document.getElementById('subTotal'),
+      laborFee: document.getElementById('laborFee'),
+      materialsFee: document.getElementById('materialsFee'),
+      vatFee: document.getElementById('vatFee'),
+      grandTotal: document.getElementById('grandTotal'),
+      btnPrint: document.getElementById('btnPrint'),
+    };
+    function format(n){ return '₪' + (Math.round(n)).toLocaleString('he-IL'); }
+    function calc(){
+      const qty = Math.max(1, Number(els.quantity.value||0));
+      const unit = Math.max(0, Number(els.unitPrice.value||0));
+      const laborP = Math.max(0, Math.min(100, Number(els.laborPct.value||0)));
+      const materials = Math.max(0, Number(els.materials.value||0));
+      const base = qty * unit;
+      const labor = base * (laborP/100);
+      const sub = base + labor + materials;
+      const vat = els.vat.checked ? sub * 0.17 : 0;
+      const total = sub + vat;
+      els.subTotal.textContent = format(base);
+      els.laborFee.textContent = format(labor);
+      els.materialsFee.textContent = format(materials);
+      els.vatFee.textContent = format(vat);
+      els.grandTotal.textContent = format(total);
+      // עדכון חוזה
+      document.getElementById('cType').textContent = document.getElementById('workType').selectedOptions[0].textContent;
+      document.getElementById('cQty').textContent = qty.toString();
+      document.getElementById('cInc').textContent = els.includes.value || '-';
+      document.getElementById('cExc').textContent = els.excludes.value || '-';
+      document.getElementById('cTotal').textContent = els.grandTotal.textContent;
+      document.getElementById('cDate').textContent = new Date().toLocaleString('he-IL');
+    }
+    ['change','input'].forEach(ev=>{
+      ['quantity','unitPrice','laborPct','materials','vat','includes','excludes','workType'].forEach(id=>{
+        const el = document.getElementById(id) || document.getElementById('workType');
+        el.addEventListener(ev, calc);
+      });
+    });
+    calc();
+    els.btnPrint.addEventListener('click', ()=>{ window.print(); });
+  </script>
+</body>
+</html>
