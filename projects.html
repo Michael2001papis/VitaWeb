@@ -3,11 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>לפני/אחרי - VitaWeb הנדימן</title>
-  <meta name="description" content="גלריית עבודות לפני ואחרי של VitaWeb הנדימן. תיקוני אינסטלציה, חשמל, תליית טלוויזיות ונגרות בערד ומיתר.">
+  <title>עבודות לפני ואחרי – הנדימן בערד, מיתר ובאר שבע</title>
+  <meta name="description" content="גלריית עבודות לפני ואחרי של הנדימן בערד, מיתר ובאר שבע. תיקוני אינסטלציה, חשמל, תליית טלוויזיות ונגרות. תוצאות מקצועיות.">
   <style>
-    :root { --brand:#0ea5e9; --brand-2:#0369a1; --ok:#22c55e; }
-    body { font-family: Arial, Helvetica, sans-serif; background:#f6f7fb; color:#0f172a; margin:0 }
+    :root { 
+      --brand: #2563eb; 
+      --brand-2: #1d4ed8; 
+      --brand-3: #3b82f6;
+      --ok: #059669; 
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+      color: #1e293b; 
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
     .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
     header { background:#ffffff; border-bottom:1px solid #e2e8f0; position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(8px) }
     footer { background:#ffffff; border-top:1px solid #e2e8f0; }
@@ -17,11 +31,32 @@
     .btn { display:inline-block; padding:.7rem 1.1rem; border-radius:.6rem; text-decoration:none }
     .btn-primary { background:var(--brand); color:#fff }
     .btn-primary:hover { background:var(--brand-2) }
-    .card { background:#fff; border:1px solid #e2e8f0; border-radius:.6rem; padding:1rem; margin-bottom:1rem }
+    .card { 
+      background: rgba(255,255,255,0.95);
+      border: 1px solid rgba(30, 64, 175, 0.1);
+      border-radius: 1.25rem; 
+      padding: 2.5rem; 
+      margin-bottom: 2rem; 
+      backdrop-filter: blur(10px);
+      color: #1e293b;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+    
+    .card:nth-child(even) {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(55,65,81,0.6) 50%, rgba(0,0,0,0.8) 100%);
+      color: #1f2937;
+    }
     .grid { display:grid; gap:1rem }
     .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)) }
     @media (max-width: 720px){ .grid-2{ grid-template-columns: 1fr } }
-    .muted { color:#475569; font-size:.9rem }
+    @media (max-width: 480px){ 
+      .container { padding: .5rem; }
+      .grid-2{ grid-template-columns: 1fr; gap: .5rem; }
+      .card { padding: .8rem; }
+      .ba-before, .ba-after { height: 240px; }
+    }
+    .muted { color:#334155; font-size:.9rem; font-weight:500 }
     .float-cta { position:fixed; left:1rem; bottom:1rem; display:flex; flex-direction:column; gap:.7rem; z-index:40 }
     /* Before/After */
     .ba-wrap{ position:relative; overflow:hidden; border-radius:.8rem; margin:1rem 0; background:#000 }

@@ -3,11 +3,25 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>צור קשר - VitaWeb הנדימן</title>
-  <meta name="description" content="צרו קשר עם VitaWeb הנדימן בערד ומיתר. טלפון: 050-853-5941, אימייל: dvnka2@gmail.com. קבלו הצעת מחיר חינם.">
+  <title>צור קשר – הנדימן בערד, מיתר ובאר שבע</title>
+  <meta name="description" content="צרו קשר עם הנדימן בערד, מיתר ובאר שבע. טלפון: 050-853-5941, אימייל: dvnka2@gmail.com. קבלו הצעת מחיר חינם.">
   <style>
-    :root { --brand:#0ea5e9; --brand-2:#0369a1; --ok:#22c55e; }
-    body { font-family: Arial, Helvetica, sans-serif; background:#f6f7fb; color:#0f172a; margin:0 }
+    :root { 
+      --brand: #2563eb; 
+      --brand-2: #1d4ed8; 
+      --brand-3: #3b82f6;
+      --ok: #059669; 
+      --warning: #d97706;
+      --danger: #dc2626;
+    }
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%);
+      color: #1e293b; 
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.7;
+    }
     .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
     header { background:#ffffff; border-bottom:1px solid #e2e8f0; position:sticky; top:0; z-index:10; backdrop-filter:saturate(180%) blur(8px) }
     footer { background:#ffffff; border-top:1px solid #e2e8f0; }
@@ -18,11 +32,27 @@
     .btn-primary { background:var(--brand); color:#fff }
     .btn-primary:hover { background:var(--brand-2) }
     .btn-ghost { background:#fff; color:#0f172a; border:1px solid #cbd5e1 }
-    .card { background:#fff; border:1px solid #e2e8f0; border-radius:.6rem; padding:1rem; margin-bottom:1rem }
+    .card { 
+      background: rgba(255,255,255,0.95); 
+      border: 1px solid rgba(30, 64, 175, 0.1); 
+      border-radius: 1.25rem; 
+      padding: 2.5rem; 
+      margin-bottom: 2rem; 
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
     .grid { display:grid; gap:1rem }
     .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)) }
     @media (max-width: 720px){ .grid-2{ grid-template-columns: 1fr } }
-    .muted { color:#475569; font-size:.9rem }
+    .form-grid { display:grid; gap:.8rem; grid-template-columns: 1fr; }
+    @media (min-width: 480px){ .form-grid { grid-template-columns: repeat(2, 1fr); } }
+    .form-grid .full-width { grid-column: 1 / -1; }
+    .muted { color:#334155; font-size:.9rem; font-weight:500 }
     .float-cta { position:fixed; left:1rem; bottom:1rem; display:flex; flex-direction:column; gap:.7rem; z-index:40 }
     input, textarea, select { width:100%; padding:.6rem; border:1px solid #cbd5e1; border-radius:.4rem; font-family:inherit; box-sizing:border-box }
     input:focus, textarea:focus, select:focus { outline:3px solid var(--brand); outline-offset:2px }
@@ -95,7 +125,7 @@
 
           <div>
             <h2 style="font-weight:800; font-size:1.4rem; margin:0 0 1rem 0;">טופס יצירת קשר</h2>
-            <form id="leadForm" class="card" style="display:grid; gap:.8rem;" novalidate>
+            <form id="leadForm" class="card form-grid" novalidate>
               <div>
                 <label for="name" style="display:block; font-size:.9rem; margin-bottom:.2rem;">שם מלא</label>
                 <input id="name" name="name" type="text" autocomplete="name" maxlength="60" required>
@@ -119,22 +149,22 @@
                   <option>אחר</option>
                 </select>
               </div>
-              <div>
+              <div class="full-width">
                 <label for="desc" style="display:block; font-size:.9rem; margin-bottom:.2rem;">תיאור קצר</label>
                 <textarea id="desc" name="desc" rows="3" placeholder="תארו את הבעיה או הצורך שלכם..." maxlength="400"></textarea>
               </div>
-              <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
-                <div>
-                  <span style="display:block; font-size:.9rem; margin-bottom:.2rem;">העדפה</span>
-                  <label style="margin-left:1rem"><input type="radio" name="pref" value="call" checked> שיחה</label>
-                  <label style="margin-left:1rem"><input type="radio" name="pref" value="whatsapp"> וואטסאפ</label>
-                </div>
-                <div>
-                  <label for="time" style="display:block; font-size:.9rem; margin-bottom:.2rem;">תזמון מועדף</label>
-                  <input id="time" name="time" type="text" placeholder="היום בערב / מחר בבוקר">
+              <div class="full-width">
+                <span style="display:block; font-size:.9rem; margin-bottom:.2rem;">העדפה</span>
+                <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                  <label style="display:flex; align-items:center; gap:.4rem;"><input type="radio" name="pref" value="call" checked> שיחה</label>
+                  <label style="display:flex; align-items:center; gap:.4rem;"><input type="radio" name="pref" value="whatsapp"> וואטסאפ</label>
                 </div>
               </div>
-              <div style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+              <div>
+                <label for="time" style="display:block; font-size:.9rem; margin-bottom:.2rem;">תזמון מועדף</label>
+                <input id="time" name="time" type="text" placeholder="היום בערב / מחר בבוקר">
+              </div>
+              <div class="full-width" style="display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
                 <p id="formMsg" class="muted" style="margin:0"></p>
                 <button type="submit" class="btn btn-primary">שליחה</button>
               </div>

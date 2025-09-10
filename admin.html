@@ -3,12 +3,64 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>פאנל מנהל - VitaWeb</title>
+  <title>פאנל ניהול – הנדימן בערד, מיתר ובאר שבע</title>
   <style>
-    :root { --brand:#0ea5e9; --brand-2:#0369a1; --danger:#dc2626; --ok:#22c55e; }
-    body { font-family: Arial, Helvetica, sans-serif; background:#f6f7fb; color:#0f172a; margin:0 }
-    .container { max-width: 900px; margin: 0 auto; padding: 1rem; }
-    .card { background:#fff; border:1px solid #e2e8f0; border-radius:.6rem; padding:1rem; margin-bottom:1rem }
+    :root { 
+      --brand: #2563eb; 
+      --brand-2: #1d4ed8; 
+      --brand-3: #3b82f6;
+      --brand-light: #dbeafe;
+      --danger: #dc2626; 
+      --ok: #059669;
+      --warning: #d97706;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-300: #cbd5e1;
+      --gray-400: #94a3b8;
+      --gray-500: #64748b;
+      --gray-600: #475569;
+      --gray-700: #334155;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    }
+    
+    * { box-sizing: border-box; }
+    
+    body { 
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);
+      color: #1e293b; 
+      margin: 0; 
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    
+    .container { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      padding: 0 1rem; 
+    }
+    .card { 
+      background: rgba(255,255,255,0.95); 
+      border: 1px solid rgba(30, 64, 175, 0.1); 
+      border-radius: 1.25rem; 
+      padding: 2.5rem; 
+      margin-bottom: 2rem; 
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      transition: all 0.3s ease;
+    }
+    
+    .card:hover {
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+      transform: translateY(-2px);
+    }
     .btn { display:inline-block; padding:.7rem 1.1rem; border-radius:.6rem; text-decoration:none; border:none; cursor:pointer }
     .btn-primary { background:var(--brand); color:#fff }
     .btn-danger { background:var(--danger); color:#fff }
@@ -27,6 +79,48 @@
     .status-quoted { background:#d1fae5; color:#065f46; padding:.2rem .5rem; border-radius:.3rem; font-size:.8rem }
     input, textarea, select { width:100%; padding:.6rem; border:1px solid #cbd5e1; border-radius:.4rem; font-family:inherit; margin:.5rem 0 }
     input:focus, textarea:focus, select:focus { outline:3px solid var(--brand); outline-offset:2px }
+    .grid { display:grid; gap:1rem }
+    .grid-2 { grid-template-columns: repeat(2, minmax(0,1fr)) }
+    .grid-3 { grid-template-columns: repeat(3, minmax(0,1fr)) }
+    .grid-4 { grid-template-columns: repeat(4, minmax(0,1fr)) }
+    @media (max-width: 720px){ .grid-2,.grid-3,.grid-4{ grid-template-columns: 1fr } }
+    .stats-card { text-align:center; padding:1.5rem; background:linear-gradient(135deg, #eef6ff, #f0f9ff); border:1px solid var(--brand); border-radius:.8rem }
+    .stats-number { font-size:2.5rem; font-weight:800; color:var(--brand); margin:.5rem 0 }
+    .stats-label { color:#374151; font-size:.9rem; margin:0; font-weight:500 }
+    .lead-item { border:1px solid #e2e8f0; border-radius:.6rem; padding:1rem; margin-bottom:.8rem; background:#fff }
+    .lead-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:.5rem }
+    .lead-name { font-weight:600; color:var(--brand) }
+    .lead-date { color:#64748b; font-size:.85rem }
+    .lead-details { color:#374151; font-size:.9rem; line-height:1.4; font-weight:500 }
+    .status-badge { padding:.3rem .6rem; border-radius:999px; font-size:.8rem; font-weight:600 }
+    .status-new { background:#dbeafe; color:#1e40af }
+    .status-contacted { background:#dcfce7; color:#166534 }
+    .status-quoted { background:#fef3c7; color:#92400e }
+    .status-won { background:#dcfce7; color:#166534 }
+    .status-lost { background:#fee2e2; color:#dc2626 }
+    .action-buttons { display:flex; gap:.5rem; margin-top:.8rem }
+    .action-buttons .btn { padding:.4rem .8rem; font-size:.85rem }
+    .filter-tabs { display:flex; gap:.5rem; margin-bottom:1rem; border-bottom:1px solid #e2e8f0 }
+    .filter-tab { padding:.6rem 1rem; background:none; border:none; cursor:pointer; color:#374151; border-bottom:2px solid transparent; font-weight:500 }
+    .filter-tab.active { color:var(--brand); border-bottom-color:var(--brand) }
+    .search-box { width:100%; padding:.6rem; border:1px solid #cbd5e1; border-radius:.4rem; margin-bottom:1rem }
+    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000 }
+    .modal-content { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); background:#fff; border-radius:.8rem; padding:2rem; max-width:500px; width:90% }
+    .modal-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem }
+    .close-btn { background:none; border:none; font-size:1.5rem; cursor:pointer; color:#64748b }
+    .form-group { margin-bottom:1rem }
+    .form-group label { display:block; margin-bottom:.3rem; font-weight:600; color:#374151 }
+    .form-group input, .form-group select, .form-group textarea { width:100%; padding:.6rem; border:1px solid #cbd5e1; border-radius:.4rem; font-family:inherit }
+    .form-group textarea { height:80px; resize:vertical }
+    .tabs { display:flex; gap:.5rem; margin-bottom:1rem; border-bottom:1px solid #e2e8f0 }
+    .tab { padding:.6rem 1rem; background:none; border:none; cursor:pointer; color:#374151; border-bottom:2px solid transparent; font-weight:500 }
+    .tab.active { color:var(--brand); border-bottom-color:var(--brand) }
+    .tab-content { display:none }
+    .tab-content.active { display:block }
+    .log-item { border:1px solid #e2e8f0; border-radius:.4rem; padding:.8rem; margin-bottom:.5rem; background:#f8fafc }
+    .log-time { font-size:.8rem; color:#64748b; margin-bottom:.2rem }
+    .log-action { font-weight:600; color:#374151; margin-bottom:.2rem }
+    .log-details { font-size:.85rem; color:#374151; font-weight:500 }
   </style>
 </head>
 <body>
@@ -53,53 +147,198 @@
     <!-- דשבורד מנהל -->
     <div id="dashboard" class="hidden">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
-        <h1 style="margin:0; color:var(--brand);">פאנל מנהל VitaWeb</h1>
+        <h1 style="margin:0; color:var(--brand);">פאנל ניהול - הנדימן בערד, מיתר ובאר שבע</h1>
         <button id="logoutBtn" class="btn btn-danger">התנתק</button>
       </div>
 
-      <!-- סטטיסטיקות -->
-      <div class="stats">
-        <div class="stat-card">
-          <div class="stat-number" id="totalLeads">0</div>
-          <div>סה"כ לידים</div>
+      <!-- סטטיסטיקות מתקדמות -->
+      <div class="grid grid-4">
+        <div class="stats-card">
+          <div class="stats-number" id="totalLeads">0</div>
+          <div class="stats-label">סה"כ לידים</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" id="newLeads">0</div>
-          <div>לידים חדשים</div>
+        <div class="stats-card">
+          <div class="stats-number" id="newLeads">0</div>
+          <div class="stats-label">לידים חדשים</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" id="contactedLeads">0</div>
-          <div>לידים שטופלו</div>
+        <div class="stats-card">
+          <div class="stats-number" id="contactedLeads">0</div>
+          <div class="stats-label">לידים שטופלו</div>
         </div>
-        <div class="stat-card">
-          <div class="stat-number" id="quotedLeads">0</div>
-          <div>הצעות מחיר</div>
+        <div class="stats-card">
+          <div class="stats-number" id="quotedLeads">0</div>
+          <div class="stats-label">הצעות מחיר</div>
         </div>
       </div>
 
-      <!-- טבלת לידים -->
-      <div class="card">
-        <h2 style="margin:0 0 1rem 0;">לידים אחרונים</h2>
-        <div style="margin-bottom:1rem;">
-          <button id="addLeadBtn" class="btn btn-primary">הוסף ליד חדש</button>
-          <button id="refreshBtn" class="btn btn-ghost">רענן</button>
+      <!-- טאבים -->
+      <div class="tabs">
+        <button class="tab active" onclick="switchTab('leads')">לידים</button>
+        <button class="tab" onclick="switchTab('quotes')">הצעות מחיר</button>
+        <button class="tab" onclick="switchTab('projects')">פרויקטים</button>
+        <button class="tab" onclick="switchTab('content')">ניהול תוכן</button>
+        <button class="tab" onclick="switchTab('settings')">הגדרות</button>
+        <button class="tab" onclick="switchTab('analytics')">סטטיסטיקות</button>
+        <button class="tab" onclick="switchTab('logs')">לוגים</button>
+      </div>
+
+      <!-- תוכן טאבים -->
+      <div id="leads-tab" class="tab-content active">
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+            <h2>ניהול לידים</h2>
+            <input type="text" class="search-box" placeholder="חיפוש לידים..." id="searchLeads">
+          </div>
+          
+          <!-- פילטרים -->
+          <div class="filter-tabs">
+            <button class="filter-tab active" onclick="filterLeads('all')">הכל</button>
+            <button class="filter-tab" onclick="filterLeads('new')">חדשים</button>
+            <button class="filter-tab" onclick="filterLeads('contacted')">טופלו</button>
+            <button class="filter-tab" onclick="filterLeads('quoted')">הוצע מחיר</button>
+            <button class="filter-tab" onclick="filterLeads('won')">נסגרו</button>
+          </div>
+
+          <div id="leadsList">
+            <!-- לידים יוצגו כאן -->
+          </div>
         </div>
-        <table class="leads-table" id="leadsTable">
-          <thead>
-            <tr>
-              <th>תאריך</th>
-              <th>שם</th>
-              <th>טלפון</th>
-              <th>עיר</th>
-              <th>שירות</th>
-              <th>סטטוס</th>
-              <th>פעולות</th>
-            </tr>
-          </thead>
-          <tbody id="leadsTableBody">
-            <!-- ימולא דינמית -->
-          </tbody>
-        </table>
+      </div>
+
+      <div id="quotes-tab" class="tab-content">
+        <div class="card">
+          <h2>הצעות מחיר</h2>
+          <div id="quotesList">
+            <p>אין הצעות מחיר עדיין</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="projects-tab" class="tab-content">
+        <div class="card">
+          <h2>פרויקטים פעילים</h2>
+          <div id="projectsList">
+            <p>אין פרויקטים פעילים</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="content-tab" class="tab-content">
+        <div class="card">
+          <h2>ניהול תוכן האתר</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>עמוד הבית</h3>
+              <div class="form-group">
+                <label>כותרת ראשית</label>
+                <input type="text" id="homeTitle" value="הנדימן בערד, מיתר ובאר שבע – תיקון אמין ומהיר">
+              </div>
+              <div class="form-group">
+                <label>תיאור קצר</label>
+                <textarea id="homeDesc" rows="3">תיקונים קטנים בלי כאב ראש: אינסטלציה קלה, חשמל, נגרות ותליית מסכים. מגיע בזמן, עובד נקי, ומתחייב לתוצאה.</textarea>
+              </div>
+              <button class="btn btn-primary" onclick="updateHomeContent()">עדכן</button>
+            </div>
+            <div>
+              <h3>פרטי יצירת קשר</h3>
+              <div class="form-group">
+                <label>טלפון</label>
+                <input type="tel" id="contactPhone" value="0508535941">
+              </div>
+              <div class="form-group">
+                <label>אימייל</label>
+                <input type="email" id="contactEmail" value="dvnka2@gmail.com">
+              </div>
+              <div class="form-group">
+                <label>אזורי שירות</label>
+                <input type="text" id="serviceAreas" value="ערד, מיתר, באר שבע">
+              </div>
+              <button class="btn btn-primary" onclick="updateContactInfo()">עדכן</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="settings-tab" class="tab-content">
+        <div class="card">
+          <h2>הגדרות מערכת</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>הגדרות כללי</h3>
+              <div class="form-group">
+                <label>שם האתר</label>
+                <input type="text" id="siteName" value="VitaWeb">
+              </div>
+              <div class="form-group">
+                <label>כותרת SEO</label>
+                <input type="text" id="seoTitle" value="הנדימן בערד, מיתר ובאר שבע">
+              </div>
+              <div class="form-group">
+                <label>תיאור SEO</label>
+                <textarea id="seoDesc" rows="3">הנדימן בערד, מיתר ובאר שבע – תיקונים קטנים, אמינים ומהירים</textarea>
+              </div>
+            </div>
+            <div>
+              <h3>הגדרות אבטחה</h3>
+              <div class="form-group">
+                <label>שם משתמש מנהל</label>
+                <input type="text" id="adminUser" value="מיכאל" readonly>
+              </div>
+              <div class="form-group">
+                <label>סיסמה חדשה</label>
+                <input type="password" id="newPassword" placeholder="הזן סיסמה חדשה">
+              </div>
+              <div class="form-group">
+                <label>אישור סיסמה</label>
+                <input type="password" id="confirmPassword" placeholder="אשר סיסמה">
+              </div>
+              <button class="btn btn-primary" onclick="updatePassword()">עדכן סיסמה</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="analytics-tab" class="tab-content">
+        <div class="card">
+          <h2>סטטיסטיקות מתקדמות</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>לידים לפי חודש</h3>
+              <div id="monthlyChart">גרף יוצג כאן</div>
+            </div>
+            <div>
+              <h3>המרות</h3>
+              <div id="conversionChart">גרף יוצג כאן</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="logs-tab" class="tab-content">
+        <div class="card">
+          <h2>לוגים ופעילות</h2>
+          <div class="form-group">
+            <label>חיפוש לוגים</label>
+            <input type="text" id="logSearch" placeholder="חפש בפעילות...">
+          </div>
+          <div id="logsList">
+            <div class="log-item">
+              <div class="log-time">2024-01-15 14:30:25</div>
+              <div class="log-action">משתמש התחבר: מיכאל</div>
+              <div class="log-details">IP: 192.168.1.1</div>
+            </div>
+            <div class="log-item">
+              <div class="log-time">2024-01-15 14:25:10</div>
+              <div class="log-action">ליד חדש נוסף: יוסי כהן</div>
+              <div class="log-details">טלפון: 050-1234567</div>
+            </div>
+            <div class="log-item">
+              <div class="log-time">2024-01-15 14:20:05</div>
+              <div class="log-action">עדכון הגדרות אתר</div>
+              <div class="log-details">שינוי כותרת עמוד הבית</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <!-- הוספת ליד -->
@@ -206,6 +445,214 @@
       return statuses[status] || status;
     }
 
+    // פונקציות מתקדמות
+    function switchTab(tabName) {
+      // הסר active מכל הטאבים
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      // הוסף active לטאב הנבחר
+      event.target.classList.add('active');
+      document.getElementById(tabName + '-tab').classList.add('active');
+      
+      // טען תוכן לפי הטאב
+      if (tabName === 'leads') {
+        renderLeadsList();
+      } else if (tabName === 'quotes') {
+        renderQuotesList();
+      } else if (tabName === 'projects') {
+        renderProjectsList();
+      } else if (tabName === 'analytics') {
+        renderAnalytics();
+      }
+    }
+
+    function renderLeadsList() {
+      const container = document.getElementById('leadsList');
+      if (leads.length === 0) {
+        container.innerHTML = '<p>אין לידים עדיין</p>';
+        return;
+      }
+
+      container.innerHTML = leads.map(lead => `
+        <div class="lead-item">
+          <div class="lead-header">
+            <div class="lead-name">${lead.name}</div>
+            <div class="lead-date">${new Date(lead.date).toLocaleDateString('he-IL')}</div>
+          </div>
+          <div class="lead-details">
+            <div><strong>טלפון:</strong> <a href="tel:${lead.phone}">${lead.phone}</a></div>
+            <div><strong>עיר:</strong> ${lead.city}</div>
+            <div><strong>שירות:</strong> ${lead.service || '-'}</div>
+            <div><strong>תיאור:</strong> ${lead.description || '-'}</div>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-primary" onclick="updateLeadStatus(${lead.id}, 'contacted')">טופל</button>
+            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'quoted')">הצעת מחיר</button>
+            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'won')">נסגר</button>
+            <button class="btn btn-danger" onclick="deleteLead(${lead.id})">מחק</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function filterLeads(status) {
+      // הסר active מכל הפילטרים
+      document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
+      // הוסף active לפילטר הנבחר
+      event.target.classList.add('active');
+      
+      // סנן לידים
+      let filteredLeads = leads;
+      if (status !== 'all') {
+        filteredLeads = leads.filter(lead => lead.status === status);
+      }
+      
+      // הצג לידים מסוננים
+      const container = document.getElementById('leadsList');
+      if (filteredLeads.length === 0) {
+        container.innerHTML = '<p>אין לידים עם הפילטר הנבחר</p>';
+        return;
+      }
+
+      container.innerHTML = filteredLeads.map(lead => `
+        <div class="lead-item">
+          <div class="lead-header">
+            <div class="lead-name">${lead.name}</div>
+            <div class="lead-date">${new Date(lead.date).toLocaleDateString('he-IL')}</div>
+          </div>
+          <div class="lead-details">
+            <div><strong>טלפון:</strong> <a href="tel:${lead.phone}">${lead.phone}</a></div>
+            <div><strong>עיר:</strong> ${lead.city}</div>
+            <div><strong>שירות:</strong> ${lead.service || '-'}</div>
+            <div><strong>תיאור:</strong> ${lead.description || '-'}</div>
+          </div>
+          <div class="action-buttons">
+            <button class="btn btn-primary" onclick="updateLeadStatus(${lead.id}, 'contacted')">טופל</button>
+            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'quoted')">הצעת מחיר</button>
+            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'won')">נסגר</button>
+            <button class="btn btn-danger" onclick="deleteLead(${lead.id})">מחק</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateLeadStatus(id, newStatus) {
+      const lead = leads.find(l => l.id === id);
+      if (lead) {
+        lead.status = newStatus;
+        saveLeads();
+        updateStats();
+        renderLeadsList();
+      }
+    }
+
+    function renderQuotesList() {
+      const container = document.getElementById('quotesList');
+      container.innerHTML = '<p>אין הצעות מחיר עדיין. זה יוצג בעתיד.</p>';
+    }
+
+    function renderProjectsList() {
+      const container = document.getElementById('projectsList');
+      container.innerHTML = '<p>אין פרויקטים פעילים עדיין. זה יוצג בעתיד.</p>';
+    }
+
+    function renderAnalytics() {
+      const monthlyChart = document.getElementById('monthlyChart');
+      const conversionChart = document.getElementById('conversionChart');
+      
+      monthlyChart.innerHTML = '<p>גרף לידים לפי חודש יוצג כאן</p>';
+      conversionChart.innerHTML = '<p>גרף המרות יוצג כאן</p>';
+    }
+
+    function showAddLeadModal() {
+      // פותח מודל להוספת ליד חדש
+      alert('מודל להוספת ליד חדש יוצג כאן');
+    }
+
+    // פונקציות ניהול תוכן
+    function updateHomeContent() {
+      const title = document.getElementById('homeTitle').value;
+      const desc = document.getElementById('homeDesc').value;
+      
+      // כאן תהיה שליחה לשרת
+      alert('תוכן עמוד הבית עודכן בהצלחה!');
+      logActivity('עדכון תוכן עמוד הבית', `כותרת: ${title}`);
+    }
+
+    function updateContactInfo() {
+      const phone = document.getElementById('contactPhone').value;
+      const email = document.getElementById('contactEmail').value;
+      const areas = document.getElementById('serviceAreas').value;
+      
+      // כאן תהיה שליחה לשרת
+      alert('פרטי יצירת קשר עודכנו בהצלחה!');
+      logActivity('עדכון פרטי יצירת קשר', `טלפון: ${phone}, אימייל: ${email}`);
+    }
+
+    function updatePassword() {
+      const newPass = document.getElementById('newPassword').value;
+      const confirmPass = document.getElementById('confirmPassword').value;
+      
+      if (newPass !== confirmPass) {
+        alert('הסיסמאות לא תואמות');
+        return;
+      }
+      
+      if (newPass.length < 6) {
+        alert('הסיסמה חייבת להיות לפחות 6 תווים');
+        return;
+      }
+      
+      // כאן תהיה שליחה לשרת
+      alert('הסיסמה עודכנה בהצלחה!');
+      logActivity('עדכון סיסמת מנהל', 'סיסמה שונתה');
+      
+      // נקה שדות
+      document.getElementById('newPassword').value = '';
+      document.getElementById('confirmPassword').value = '';
+    }
+
+    function logActivity(action, details) {
+      const now = new Date();
+      const timeStr = now.toLocaleString('he-IL');
+      
+      const logItem = document.createElement('div');
+      logItem.className = 'log-item';
+      logItem.innerHTML = `
+        <div class="log-time">${timeStr}</div>
+        <div class="log-action">${action}</div>
+        <div class="log-details">${details}</div>
+      `;
+      
+      const logsList = document.getElementById('logsList');
+      logsList.insertBefore(logItem, logsList.firstChild);
+    }
+
+    // עדכון פונקציית switchTab
+    function switchTab(tabName) {
+      // הסר active מכל הטאבים
+      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      
+      // הוסף active לטאב הנבחר
+      event.target.classList.add('active');
+      document.getElementById(tabName + '-tab').classList.add('active');
+      
+      // טען תוכן לפי הטאב
+      if (tabName === 'leads') {
+        renderLeadsList();
+      } else if (tabName === 'quotes') {
+        renderQuotesList();
+      } else if (tabName === 'projects') {
+        renderProjectsList();
+      } else if (tabName === 'analytics') {
+        renderAnalytics();
+      } else if (tabName === 'logs') {
+        // לוגים כבר נטענים
+      }
+    }
+
     function editLead(id) {
       const lead = leads.find(l => l.id === id);
       if (!lead) return;
@@ -237,7 +684,7 @@
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
       
-      if (username === 'MOMO' && password === '112233') {
+      if (username === 'מיכאל' && password === 'MP123456') {
         currentUser = { username, password };
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
@@ -300,13 +747,15 @@
       }
 
       saveLeads();
-      renderLeadsTable();
+      renderLeadsList();
       document.getElementById('addLeadForm').classList.add('hidden');
       e.target.reset();
     });
 
     // טעינה ראשונית
+    loadLeads();
     updateStats();
+    renderLeadsList();
   </script>
   <button id="creditsBtn" class="btn btn-ghost" style="position:fixed; right:1rem; bottom:1rem;">זכויות יוצרים</button>
   <div id="creditsModal" style="position:fixed; inset:0; background:#0008; display:none; align-items:center; justify-content:center; z-index:50">
