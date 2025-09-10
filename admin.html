@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>פאנל ניהול – הנדימן בערד, מיתר ובאר שבע</title>
+  <title>הגדרות אתר – הנדימן בערד, מיתר ובאר שבע</title>
   <style>
     :root { 
       --brand: #2563eb; 
@@ -128,7 +128,7 @@
     <!-- מסך כניסה -->
     <div id="loginScreen" class="login-form">
       <div class="card">
-        <h1 style="margin:0 0 1rem 0; color:var(--brand);">פאנל מנהל VitaWeb</h1>
+        <h1 style="margin:0 0 1rem 0; color:var(--brand);">הגדרות אתר VitaWeb</h1>
         <form id="loginForm">
           <div>
             <label for="username" style="display:block; text-align:right; margin-bottom:.2rem;">שם משתמש</label>
@@ -147,7 +147,7 @@
     <!-- דשבורד מנהל -->
     <div id="dashboard" class="hidden">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
-        <h1 style="margin:0; color:var(--brand);">פאנל ניהול - הנדימן בערד, מיתר ובאר שבע</h1>
+        <h1 style="margin:0; color:var(--brand);">הגדרות אתר - הנדימן בערד, מיתר ובאר שבע</h1>
         <button id="logoutBtn" class="btn btn-danger">התנתק</button>
       </div>
 
@@ -173,52 +173,295 @@
 
       <!-- טאבים -->
       <div class="tabs">
-        <button class="tab active" onclick="switchTab('leads')">לידים</button>
-        <button class="tab" onclick="switchTab('quotes')">הצעות מחיר</button>
-        <button class="tab" onclick="switchTab('projects')">פרויקטים</button>
-        <button class="tab" onclick="switchTab('content')">ניהול תוכן</button>
-        <button class="tab" onclick="switchTab('settings')">הגדרות</button>
-        <button class="tab" onclick="switchTab('analytics')">סטטיסטיקות</button>
-        <button class="tab" onclick="switchTab('logs')">לוגים</button>
+        <button class="tab active" onclick="switchTab('appearance')">מראה</button>
+        <button class="tab" onclick="switchTab('language')">שפה</button>
+        <button class="tab" onclick="switchTab('accessibility')">נגישות</button>
+        <button class="tab" onclick="switchTab('content')">תוכן</button>
+        <button class="tab" onclick="switchTab('contact')">פרטי קשר</button>
+        <button class="tab" onclick="switchTab('advanced')">מתקדם</button>
+        <button class="tab" onclick="switchTab('backup')">גיבוי</button>
       </div>
 
       <!-- תוכן טאבים -->
-      <div id="leads-tab" class="tab-content active">
+      <div id="appearance-tab" class="tab-content active">
         <div class="card">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
-            <h2>ניהול לידים</h2>
-            <input type="text" class="search-box" placeholder="חיפוש לידים..." id="searchLeads">
+          <h2>הגדרות מראה</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>גדלי טקסט</h3>
+              <div class="form-group">
+                <label>גודל טקסט</label>
+                <select id="textSize">
+                  <option value="small">קטן</option>
+                  <option value="medium" selected>בינוני</option>
+                  <option value="large">גדול</option>
+                  <option value="extra-large">גדול מאוד</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>גודל כפתורים</label>
+                <select id="buttonSize">
+                  <option value="small">קטן</option>
+                  <option value="medium" selected>בינוני</option>
+                  <option value="large">גדול</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3>עיצוב כללי</h3>
+              <div class="form-group">
+                <label>ערכת צבעים</label>
+                <select id="colorScheme">
+                  <option value="default" selected>ברירת מחדל (כחול)</option>
+                  <option value="green">ירוק</option>
+                  <option value="purple">סגול</option>
+                  <option value="orange">כתום</option>
+                  <option value="dark">כהה</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>עיצוב כרטיסים</label>
+                <select id="cardStyle">
+                  <option value="rounded" selected>עגול</option>
+                  <option value="square">מרובע</option>
+                  <option value="minimal">מינימלי</option>
+                </select>
+              </div>
+            </div>
           </div>
-          
-          <!-- פילטרים -->
-          <div class="filter-tabs">
-            <button class="filter-tab active" onclick="filterLeads('all')">הכל</button>
-            <button class="filter-tab" onclick="filterLeads('new')">חדשים</button>
-            <button class="filter-tab" onclick="filterLeads('contacted')">טופלו</button>
-            <button class="filter-tab" onclick="filterLeads('quoted')">הוצע מחיר</button>
-            <button class="filter-tab" onclick="filterLeads('won')">נסגרו</button>
-          </div>
-
-          <div id="leadsList">
-            <!-- לידים יוצגו כאן -->
-          </div>
+          <button class="btn btn-primary" onclick="applyAppearanceSettings()">החל הגדרות</button>
         </div>
       </div>
 
-      <div id="quotes-tab" class="tab-content">
+      <div id="language-tab" class="tab-content">
         <div class="card">
-          <h2>הצעות מחיר</h2>
-          <div id="quotesList">
-            <p>אין הצעות מחיר עדיין</p>
+          <h2>הגדרות שפה</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>שפת האתר</h3>
+              <div class="form-group">
+                <label>שפה ראשית</label>
+                <select id="primaryLanguage">
+                  <option value="he" selected>עברית</option>
+                  <option value="en">English</option>
+                  <option value="ru">Русский</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>כיוון טקסט</label>
+                <select id="textDirection">
+                  <option value="rtl" selected>ימין לשמאל (RTL)</option>
+                  <option value="ltr">שמאל לימין (LTR)</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3>תרגום תוכן</h3>
+              <div class="form-group">
+                <label>תרגום אוטומטי</label>
+                <label style="display:flex; align-items:center; gap:.5rem;">
+                  <input type="checkbox" id="autoTranslate"> הפעל תרגום אוטומטי
+                </label>
+              </div>
+              <div class="form-group">
+                <label>שפות נוספות</label>
+                <div style="display:flex; flex-direction:column; gap:.5rem;">
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="langEn"> English
+                  </label>
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="langRu"> Русский
+                  </label>
+                </div>
+              </div>
+            </div>
           </div>
+          <button class="btn btn-primary" onclick="applyLanguageSettings()">החל הגדרות</button>
         </div>
       </div>
 
-      <div id="projects-tab" class="tab-content">
+      <div id="accessibility-tab" class="tab-content">
         <div class="card">
-          <h2>פרויקטים פעילים</h2>
-          <div id="projectsList">
-            <p>אין פרויקטים פעילים</p>
+          <h2>הגדרות נגישות</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>עיפוך צבעים</h3>
+              <div class="form-group">
+                <label>רמת ניגודיות</label>
+                <select id="contrastLevel">
+                  <option value="normal" selected>רגיל</option>
+                  <option value="high">גבוה</option>
+                  <option value="very-high">גבוה מאוד</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>מצב צבעים</label>
+                <select id="colorMode">
+                  <option value="normal" selected>צבע מלא</option>
+                  <option value="grayscale">גווני אפור</option>
+                  <option value="inverted">הפוך</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <h3>תמיכה במוגבלויות</h3>
+              <div class="form-group">
+                <label>הגדרות נוספות</label>
+                <div style="display:flex; flex-direction:column; gap:.5rem;">
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="reduceMotion"> הפחת אנימציות
+                  </label>
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="largeText"> טקסט גדול
+                  </label>
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="highContrast"> ניגודיות גבוהה
+                  </label>
+                  <label style="display:flex; align-items:center; gap:.5rem;">
+                    <input type="checkbox" id="screenReader"> תמיכה בקוראי מסך
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="applyAccessibilitySettings()">החל הגדרות</button>
+        </div>
+      </div>
+
+      <div id="contact-tab" class="tab-content">
+        <div class="card">
+          <h2>פרטי יצירת קשר</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>פרטי הנדימן</h3>
+              <div class="form-group">
+                <label>שם מלא</label>
+                <input type="text" id="handymanName" value="VitaWeb">
+              </div>
+              <div class="form-group">
+                <label>טלפון</label>
+                <input type="tel" id="contactPhone" value="050-853-5941">
+              </div>
+              <div class="form-group">
+                <label>אימייל</label>
+                <input type="email" id="contactEmail" value="dvnka2@gmail.com">
+              </div>
+              <div class="form-group">
+                <label>כתובת</label>
+                <input type="text" id="address" value="ערד, ישראל">
+              </div>
+            </div>
+            <div>
+              <h3>אזורי שירות</h3>
+              <div class="form-group">
+                <label>ערים ראשיות</label>
+                <input type="text" id="mainCities" value="ערד, מיתר">
+              </div>
+              <div class="form-group">
+                <label>אזורים נוספים</label>
+                <input type="text" id="additionalAreas" value="באר שבע (מעל 20,000₪)">
+              </div>
+              <div class="form-group">
+                <label>שעות עבודה</label>
+                <input type="text" id="workingHours" value="א-ה: 08:00-19:00, ו': 08:00-13:00">
+              </div>
+              <div class="form-group">
+                <label>זמינות חירום</label>
+                <label style="display:flex; align-items:center; gap:.5rem;">
+                  <input type="checkbox" id="emergencyService" checked> שירות חירום 24/7
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="updateContactInfo()">עדכן פרטי קשר</button>
+        </div>
+      </div>
+
+      <div id="advanced-tab" class="tab-content">
+        <div class="card">
+          <h2>הגדרות מתקדמות</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>SEO ואבטחה</h3>
+              <div class="form-group">
+                <label>כותרת SEO</label>
+                <input type="text" id="seoTitle" value="הנדימן בערד, מיתר ובאר שבע">
+              </div>
+              <div class="form-group">
+                <label>תיאור SEO</label>
+                <textarea id="seoDesc" rows="3">הנדימן בערד, מיתר ובאר שבע – תיקונים קטנים, אמינים ומהירים</textarea>
+              </div>
+              <div class="form-group">
+                <label>מילות מפתח</label>
+                <input type="text" id="keywords" value="הנדימן, ערד, מיתר, באר שבע, אינסטלציה, חשמל">
+              </div>
+            </div>
+            <div>
+              <h3>ביצועים</h3>
+              <div class="form-group">
+                <label>דחיסת תמונות</label>
+                <label style="display:flex; align-items:center; gap:.5rem;">
+                  <input type="checkbox" id="compressImages" checked> הפעל דחיסה אוטומטית
+                </label>
+              </div>
+              <div class="form-group">
+                <label>טעינה מהירה</label>
+                <label style="display:flex; align-items:center; gap:.5rem;">
+                  <input type="checkbox" id="fastLoading" checked> הפעל טעינה מהירה
+                </label>
+              </div>
+              <div class="form-group">
+                <label>מטמון</label>
+                <select id="cacheLevel">
+                  <option value="low">נמוך</option>
+                  <option value="medium" selected>בינוני</option>
+                  <option value="high">גבוה</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-primary" onclick="applyAdvancedSettings()">החל הגדרות</button>
+        </div>
+      </div>
+
+      <div id="backup-tab" class="tab-content">
+        <div class="card">
+          <h2>גיבוי ושחזור</h2>
+          <div class="grid grid-2">
+            <div>
+              <h3>גיבוי נתונים</h3>
+              <div class="form-group">
+                <label>גיבוי אוטומטי</label>
+                <label style="display:flex; align-items:center; gap:.5rem;">
+                  <input type="checkbox" id="autoBackup" checked> הפעל גיבוי יומי
+                </label>
+              </div>
+              <div class="form-group">
+                <label>תדירות גיבוי</label>
+                <select id="backupFrequency">
+                  <option value="daily" selected>יומי</option>
+                  <option value="weekly">שבועי</option>
+                  <option value="monthly">חודשי</option>
+                </select>
+              </div>
+              <button class="btn btn-primary" onclick="createBackup()">צור גיבוי עכשיו</button>
+            </div>
+            <div>
+              <h3>שחזור נתונים</h3>
+              <div class="form-group">
+                <label>בחר קובץ גיבוי</label>
+                <input type="file" id="backupFile" accept=".json">
+              </div>
+              <div class="form-group">
+                <label>גיבויים זמינים</label>
+                <select id="availableBackups">
+                  <option value="">בחר גיבוי לשחזור</option>
+                  <option value="backup1">גיבוי מה-15/01/2024</option>
+                  <option value="backup2">גיבוי מה-10/01/2024</option>
+                </select>
+              </div>
+              <button class="btn btn-danger" onclick="restoreBackup()">שחזר נתונים</button>
+            </div>
           </div>
         </div>
       </div>
@@ -237,213 +480,37 @@
                 <label>תיאור קצר</label>
                 <textarea id="homeDesc" rows="3">תיקונים קטנים בלי כאב ראש: אינסטלציה קלה, חשמל, נגרות ותליית מסכים. מגיע בזמן, עובד נקי, ומתחייב לתוצאה.</textarea>
               </div>
-              <button class="btn btn-primary" onclick="updateHomeContent()">עדכן</button>
+              <div class="form-group">
+                <label>הוכחות חברתיות</label>
+                <input type="text" id="socialProof" value="מעל 1,200 עבודות, 8+ שנות ניסיון">
+              </div>
             </div>
             <div>
-              <h3>פרטי יצירת קשר</h3>
+              <h3>שירותים</h3>
               <div class="form-group">
-                <label>טלפון</label>
-                <input type="tel" id="contactPhone" value="0508535941">
+                <label>שירות ראשי 1</label>
+                <input type="text" id="service1" value="תיקוני אינסטלציה">
               </div>
               <div class="form-group">
-                <label>אימייל</label>
-                <input type="email" id="contactEmail" value="dvnka2@gmail.com">
+                <label>שירות ראשי 2</label>
+                <input type="text" id="service2" value="תליית טלוויזיות">
               </div>
               <div class="form-group">
-                <label>אזורי שירות</label>
-                <input type="text" id="serviceAreas" value="ערד, מיתר, באר שבע">
+                <label>שירות ראשי 3</label>
+                <input type="text" id="service3" value="תיקוני חשמל">
               </div>
-              <button class="btn btn-primary" onclick="updateContactInfo()">עדכן</button>
+              <button class="btn btn-primary" onclick="updateContent()">עדכן תוכן</button>
             </div>
           </div>
         </div>
       </div>
 
-      <div id="settings-tab" class="tab-content">
-        <div class="card">
-          <h2>הגדרות מערכת</h2>
-          <div class="grid grid-2">
-            <div>
-              <h3>הגדרות כללי</h3>
-              <div class="form-group">
-                <label>שם האתר</label>
-                <input type="text" id="siteName" value="VitaWeb">
-              </div>
-              <div class="form-group">
-                <label>כותרת SEO</label>
-                <input type="text" id="seoTitle" value="הנדימן בערד, מיתר ובאר שבע">
-              </div>
-              <div class="form-group">
-                <label>תיאור SEO</label>
-                <textarea id="seoDesc" rows="3">הנדימן בערד, מיתר ובאר שבע – תיקונים קטנים, אמינים ומהירים</textarea>
-              </div>
-            </div>
-            <div>
-              <h3>הגדרות אבטחה</h3>
-              <div class="form-group">
-                <label>שם משתמש מנהל</label>
-                <input type="text" id="adminUser" value="מיכאל" readonly>
-              </div>
-              <div class="form-group">
-                <label>סיסמה חדשה</label>
-                <input type="password" id="newPassword" placeholder="הזן סיסמה חדשה">
-              </div>
-              <div class="form-group">
-                <label>אישור סיסמה</label>
-                <input type="password" id="confirmPassword" placeholder="אשר סיסמה">
-              </div>
-              <button class="btn btn-primary" onclick="updatePassword()">עדכן סיסמה</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="analytics-tab" class="tab-content">
-        <div class="card">
-          <h2>סטטיסטיקות מתקדמות</h2>
-          <div class="grid grid-2">
-            <div>
-              <h3>לידים לפי חודש</h3>
-              <div id="monthlyChart">גרף יוצג כאן</div>
-            </div>
-            <div>
-              <h3>המרות</h3>
-              <div id="conversionChart">גרף יוצג כאן</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="logs-tab" class="tab-content">
-        <div class="card">
-          <h2>לוגים ופעילות</h2>
-          <div class="form-group">
-            <label>חיפוש לוגים</label>
-            <input type="text" id="logSearch" placeholder="חפש בפעילות...">
-          </div>
-          <div id="logsList">
-            <div class="log-item">
-              <div class="log-time">2024-01-15 14:30:25</div>
-              <div class="log-action">משתמש התחבר: מיכאל</div>
-              <div class="log-details">IP: 192.168.1.1</div>
-            </div>
-            <div class="log-item">
-              <div class="log-time">2024-01-15 14:25:10</div>
-              <div class="log-action">ליד חדש נוסף: יוסי כהן</div>
-              <div class="log-details">טלפון: 050-1234567</div>
-            </div>
-            <div class="log-item">
-              <div class="log-time">2024-01-15 14:20:05</div>
-              <div class="log-action">עדכון הגדרות אתר</div>
-              <div class="log-details">שינוי כותרת עמוד הבית</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- הוספת ליד -->
-      <div id="addLeadForm" class="card hidden">
-        <h2 style="margin:0 0 1rem 0;">הוספת ליד חדש</h2>
-        <form id="newLeadForm">
-          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1rem;">
-            <div>
-              <label for="newName">שם מלא</label>
-              <input id="newName" name="name" type="text" required>
-            </div>
-            <div>
-              <label for="newPhone">טלפון</label>
-              <input id="newPhone" name="phone" type="tel" required>
-            </div>
-            <div>
-              <label for="newCity">עיר</label>
-              <input id="newCity" name="city" type="text" required>
-            </div>
-            <div>
-              <label for="newService">שירות</label>
-              <select id="newService" name="service">
-                <option value="">בחר שירות</option>
-                <option>אינסטלציה</option>
-                <option>חשמל</option>
-                <option>נגרות</option>
-                <option>תליית טלוויזיה</option>
-                <option>אחר</option>
-              </select>
-            </div>
-            <div>
-              <label for="newStatus">סטטוס</label>
-              <select id="newStatus" name="status">
-                <option value="new">חדש</option>
-                <option value="contacted">טופל</option>
-                <option value="quoted">הוצעה</option>
-                <option value="won">נסגר</option>
-                <option value="lost">אבוד</option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <label for="newDescription">תיאור</label>
-            <textarea id="newDescription" name="description" rows="3"></textarea>
-          </div>
-          <div style="margin-top:1rem;">
-            <button type="submit" class="btn btn-primary">שמור ליד</button>
-            <button type="button" id="cancelAddBtn" class="btn btn-ghost">ביטול</button>
-          </div>
-        </form>
-      </div>
     </div>
   </div>
 
   <script>
-    // נתונים מקומיים (במקום מסד נתונים)
-    let leads = JSON.parse(localStorage.getItem('vitaweb_leads') || '[]');
+    // נתונים מקומיים
     let currentUser = null;
-
-    // פונקציות עזר
-    function saveLeads() {
-      localStorage.setItem('vitaweb_leads', JSON.stringify(leads));
-      updateStats();
-    }
-
-    function updateStats() {
-      const total = leads.length;
-      const newLeads = leads.filter(l => l.status === 'new').length;
-      const contacted = leads.filter(l => l.status === 'contacted').length;
-      const quoted = leads.filter(l => l.status === 'quoted').length;
-
-      document.getElementById('totalLeads').textContent = total;
-      document.getElementById('newLeads').textContent = newLeads;
-      document.getElementById('contactedLeads').textContent = contacted;
-      document.getElementById('quotedLeads').textContent = quoted;
-    }
-
-    function renderLeadsTable() {
-      const tbody = document.getElementById('leadsTableBody');
-      tbody.innerHTML = leads.map(lead => `
-        <tr>
-          <td>${new Date(lead.date).toLocaleDateString('he-IL')}</td>
-          <td>${lead.name}</td>
-          <td><a href="tel:${lead.phone}">${lead.phone}</a></td>
-          <td>${lead.city}</td>
-          <td>${lead.service || '-'}</td>
-          <td><span class="status-${lead.status}">${getStatusText(lead.status)}</span></td>
-          <td>
-            <button onclick="editLead(${lead.id})" class="btn btn-ghost" style="padding:.3rem .6rem; font-size:.8rem;">ערוך</button>
-            <button onclick="deleteLead(${lead.id})" class="btn btn-danger" style="padding:.3rem .6rem; font-size:.8rem;">מחק</button>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    function getStatusText(status) {
-      const statuses = {
-        'new': 'חדש',
-        'contacted': 'טופל',
-        'quoted': 'הוצעה',
-        'won': 'נסגר',
-        'lost': 'אבוד'
-      };
-      return statuses[status] || status;
-    }
 
     // פונקציות מתקדמות
     function switchTab(tabName) {
@@ -454,229 +521,201 @@
       // הוסף active לטאב הנבחר
       event.target.classList.add('active');
       document.getElementById(tabName + '-tab').classList.add('active');
-      
-      // טען תוכן לפי הטאב
-      if (tabName === 'leads') {
-        renderLeadsList();
-      } else if (tabName === 'quotes') {
-        renderQuotesList();
-      } else if (tabName === 'projects') {
-        renderProjectsList();
-      } else if (tabName === 'analytics') {
-        renderAnalytics();
-      }
     }
-
-    function renderLeadsList() {
-      const container = document.getElementById('leadsList');
-      if (leads.length === 0) {
-        container.innerHTML = '<p>אין לידים עדיין</p>';
+    
+    // פונקציות הגדרות מראה
+    function applyAppearanceSettings() {
+      const textSize = document.getElementById('textSize').value;
+      const buttonSize = document.getElementById('buttonSize').value;
+      const colorScheme = document.getElementById('colorScheme').value;
+      const cardStyle = document.getElementById('cardStyle').value;
+      
+      // שמור הגדרות
+      const settings = {
+        textSize,
+        buttonSize,
+        colorScheme,
+        cardStyle,
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('vitaweb_appearance', JSON.stringify(settings));
+      alert('הגדרות המראה עודכנו בהצלחה!');
+    }
+    
+    // פונקציות הגדרות שפה
+    function applyLanguageSettings() {
+      const primaryLanguage = document.getElementById('primaryLanguage').value;
+      const textDirection = document.getElementById('textDirection').value;
+      const autoTranslate = document.getElementById('autoTranslate').checked;
+      const langEn = document.getElementById('langEn').checked;
+      const langRu = document.getElementById('langRu').checked;
+      
+      // שמור הגדרות
+      const settings = {
+        primaryLanguage,
+        textDirection,
+        autoTranslate,
+        additionalLanguages: {
+          en: langEn,
+          ru: langRu
+        },
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('vitaweb_language', JSON.stringify(settings));
+      alert('הגדרות השפה עודכנו בהצלחה!');
+    }
+    
+    // פונקציות הגדרות נגישות
+    function applyAccessibilitySettings() {
+      const contrastLevel = document.getElementById('contrastLevel').value;
+      const colorMode = document.getElementById('colorMode').value;
+      const reduceMotion = document.getElementById('reduceMotion').checked;
+      const largeText = document.getElementById('largeText').checked;
+      const highContrast = document.getElementById('highContrast').checked;
+      const screenReader = document.getElementById('screenReader').checked;
+      
+      // שמור הגדרות
+      const settings = {
+        contrastLevel,
+        colorMode,
+        reduceMotion,
+        largeText,
+        highContrast,
+        screenReader,
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('vitaweb_accessibility', JSON.stringify(settings));
+      alert('הגדרות הנגישות עודכנו בהצלחה!');
+    }
+    
+    // פונקציות הגדרות מתקדמות
+    function applyAdvancedSettings() {
+      const seoTitle = document.getElementById('seoTitle').value;
+      const seoDesc = document.getElementById('seoDesc').value;
+      const keywords = document.getElementById('keywords').value;
+      const compressImages = document.getElementById('compressImages').checked;
+      const fastLoading = document.getElementById('fastLoading').checked;
+      const cacheLevel = document.getElementById('cacheLevel').value;
+      
+      // שמור הגדרות
+      const settings = {
+        seoTitle,
+        seoDesc,
+        keywords,
+        compressImages,
+        fastLoading,
+        cacheLevel,
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('vitaweb_advanced', JSON.stringify(settings));
+      alert('הגדרות המתקדמות עודכנו בהצלחה!');
+    }
+    
+    // פונקציות גיבוי
+    function createBackup() {
+      const allSettings = {
+        appearance: JSON.parse(localStorage.getItem('vitaweb_appearance') || '{}'),
+        language: JSON.parse(localStorage.getItem('vitaweb_language') || '{}'),
+        accessibility: JSON.parse(localStorage.getItem('vitaweb_accessibility') || '{}'),
+        advanced: JSON.parse(localStorage.getItem('vitaweb_advanced') || '{}'),
+        timestamp: new Date().toISOString()
+      };
+      
+      const dataStr = JSON.stringify(allSettings, null, 2);
+      const dataBlob = new Blob([dataStr], {type: 'application/json'});
+      
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(dataBlob);
+      link.download = `vitaweb-backup-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+      
+      alert('גיבוי נוצר בהצלחה!');
+    }
+    
+    function restoreBackup() {
+      const fileInput = document.getElementById('backupFile');
+      const file = fileInput.files[0];
+      
+      if (!file) {
+        alert('נא לבחור קובץ גיבוי');
         return;
       }
-
-      container.innerHTML = leads.map(lead => `
-        <div class="lead-item">
-          <div class="lead-header">
-            <div class="lead-name">${lead.name}</div>
-            <div class="lead-date">${new Date(lead.date).toLocaleDateString('he-IL')}</div>
-          </div>
-          <div class="lead-details">
-            <div><strong>טלפון:</strong> <a href="tel:${lead.phone}">${lead.phone}</a></div>
-            <div><strong>עיר:</strong> ${lead.city}</div>
-            <div><strong>שירות:</strong> ${lead.service || '-'}</div>
-            <div><strong>תיאור:</strong> ${lead.description || '-'}</div>
-          </div>
-          <div class="action-buttons">
-            <button class="btn btn-primary" onclick="updateLeadStatus(${lead.id}, 'contacted')">טופל</button>
-            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'quoted')">הצעת מחיר</button>
-            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'won')">נסגר</button>
-            <button class="btn btn-danger" onclick="deleteLead(${lead.id})">מחק</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function filterLeads(status) {
-      // הסר active מכל הפילטרים
-      document.querySelectorAll('.filter-tab').forEach(tab => tab.classList.remove('active'));
-      // הוסף active לפילטר הנבחר
-      event.target.classList.add('active');
       
-      // סנן לידים
-      let filteredLeads = leads;
-      if (status !== 'all') {
-        filteredLeads = leads.filter(lead => lead.status === status);
-      }
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        try {
+          const backup = JSON.parse(e.target.result);
+          
+          // שחזר הגדרות
+          if (backup.appearance) localStorage.setItem('vitaweb_appearance', JSON.stringify(backup.appearance));
+          if (backup.language) localStorage.setItem('vitaweb_language', JSON.stringify(backup.language));
+          if (backup.accessibility) localStorage.setItem('vitaweb_accessibility', JSON.stringify(backup.accessibility));
+          if (backup.advanced) localStorage.setItem('vitaweb_advanced', JSON.stringify(backup.advanced));
+          
+          alert('הנתונים שוחזרו בהצלחה!');
+        } catch (error) {
+          alert('שגיאה בקובץ הגיבוי: ' + error.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+    
+    // פונקציות תוכן
+    function updateContent() {
+      const homeTitle = document.getElementById('homeTitle').value;
+      const homeDesc = document.getElementById('homeDesc').value;
+      const socialProof = document.getElementById('socialProof').value;
+      const service1 = document.getElementById('service1').value;
+      const service2 = document.getElementById('service2').value;
+      const service3 = document.getElementById('service3').value;
       
-      // הצג לידים מסוננים
-      const container = document.getElementById('leadsList');
-      if (filteredLeads.length === 0) {
-        container.innerHTML = '<p>אין לידים עם הפילטר הנבחר</p>';
-        return;
-      }
-
-      container.innerHTML = filteredLeads.map(lead => `
-        <div class="lead-item">
-          <div class="lead-header">
-            <div class="lead-name">${lead.name}</div>
-            <div class="lead-date">${new Date(lead.date).toLocaleDateString('he-IL')}</div>
-          </div>
-          <div class="lead-details">
-            <div><strong>טלפון:</strong> <a href="tel:${lead.phone}">${lead.phone}</a></div>
-            <div><strong>עיר:</strong> ${lead.city}</div>
-            <div><strong>שירות:</strong> ${lead.service || '-'}</div>
-            <div><strong>תיאור:</strong> ${lead.description || '-'}</div>
-          </div>
-          <div class="action-buttons">
-            <button class="btn btn-primary" onclick="updateLeadStatus(${lead.id}, 'contacted')">טופל</button>
-            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'quoted')">הצעת מחיר</button>
-            <button class="btn btn-ghost" onclick="updateLeadStatus(${lead.id}, 'won')">נסגר</button>
-            <button class="btn btn-danger" onclick="deleteLead(${lead.id})">מחק</button>
-          </div>
-        </div>
-      `).join('');
-    }
-
-    function updateLeadStatus(id, newStatus) {
-      const lead = leads.find(l => l.id === id);
-      if (lead) {
-        lead.status = newStatus;
-        saveLeads();
-        updateStats();
-        renderLeadsList();
-      }
-    }
-
-    function renderQuotesList() {
-      const container = document.getElementById('quotesList');
-      container.innerHTML = '<p>אין הצעות מחיר עדיין. זה יוצג בעתיד.</p>';
-    }
-
-    function renderProjectsList() {
-      const container = document.getElementById('projectsList');
-      container.innerHTML = '<p>אין פרויקטים פעילים עדיין. זה יוצג בעתיד.</p>';
-    }
-
-    function renderAnalytics() {
-      const monthlyChart = document.getElementById('monthlyChart');
-      const conversionChart = document.getElementById('conversionChart');
+      // שמור תוכן
+      const content = {
+        homeTitle,
+        homeDesc,
+        socialProof,
+        services: [service1, service2, service3],
+        timestamp: new Date().toISOString()
+      };
       
-      monthlyChart.innerHTML = '<p>גרף לידים לפי חודש יוצג כאן</p>';
-      conversionChart.innerHTML = '<p>גרף המרות יוצג כאן</p>';
+      localStorage.setItem('vitaweb_content', JSON.stringify(content));
+      alert('התוכן עודכן בהצלחה!');
     }
 
-    function showAddLeadModal() {
-      // פותח מודל להוספת ליד חדש
-      alert('מודל להוספת ליד חדש יוצג כאן');
-    }
+
 
     // פונקציות ניהול תוכן
-    function updateHomeContent() {
-      const title = document.getElementById('homeTitle').value;
-      const desc = document.getElementById('homeDesc').value;
-      
-      // כאן תהיה שליחה לשרת
-      alert('תוכן עמוד הבית עודכן בהצלחה!');
-      logActivity('עדכון תוכן עמוד הבית', `כותרת: ${title}`);
-    }
-
     function updateContactInfo() {
+      const handymanName = document.getElementById('handymanName').value;
       const phone = document.getElementById('contactPhone').value;
       const email = document.getElementById('contactEmail').value;
-      const areas = document.getElementById('serviceAreas').value;
+      const address = document.getElementById('address').value;
+      const mainCities = document.getElementById('mainCities').value;
+      const additionalAreas = document.getElementById('additionalAreas').value;
+      const workingHours = document.getElementById('workingHours').value;
+      const emergencyService = document.getElementById('emergencyService').checked;
       
-      // כאן תהיה שליחה לשרת
+      // שמור פרטי קשר
+      const contactInfo = {
+        handymanName,
+        phone,
+        email,
+        address,
+        mainCities,
+        additionalAreas,
+        workingHours,
+        emergencyService,
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('vitaweb_contact', JSON.stringify(contactInfo));
       alert('פרטי יצירת קשר עודכנו בהצלחה!');
-      logActivity('עדכון פרטי יצירת קשר', `טלפון: ${phone}, אימייל: ${email}`);
     }
 
-    function updatePassword() {
-      const newPass = document.getElementById('newPassword').value;
-      const confirmPass = document.getElementById('confirmPassword').value;
-      
-      if (newPass !== confirmPass) {
-        alert('הסיסמאות לא תואמות');
-        return;
-      }
-      
-      if (newPass.length < 6) {
-        alert('הסיסמה חייבת להיות לפחות 6 תווים');
-        return;
-      }
-      
-      // כאן תהיה שליחה לשרת
-      alert('הסיסמה עודכנה בהצלחה!');
-      logActivity('עדכון סיסמת מנהל', 'סיסמה שונתה');
-      
-      // נקה שדות
-      document.getElementById('newPassword').value = '';
-      document.getElementById('confirmPassword').value = '';
-    }
-
-    function logActivity(action, details) {
-      const now = new Date();
-      const timeStr = now.toLocaleString('he-IL');
-      
-      const logItem = document.createElement('div');
-      logItem.className = 'log-item';
-      logItem.innerHTML = `
-        <div class="log-time">${timeStr}</div>
-        <div class="log-action">${action}</div>
-        <div class="log-details">${details}</div>
-      `;
-      
-      const logsList = document.getElementById('logsList');
-      logsList.insertBefore(logItem, logsList.firstChild);
-    }
-
-    // עדכון פונקציית switchTab
-    function switchTab(tabName) {
-      // הסר active מכל הטאבים
-      document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
-      
-      // הוסף active לטאב הנבחר
-      event.target.classList.add('active');
-      document.getElementById(tabName + '-tab').classList.add('active');
-      
-      // טען תוכן לפי הטאב
-      if (tabName === 'leads') {
-        renderLeadsList();
-      } else if (tabName === 'quotes') {
-        renderQuotesList();
-      } else if (tabName === 'projects') {
-        renderProjectsList();
-      } else if (tabName === 'analytics') {
-        renderAnalytics();
-      } else if (tabName === 'logs') {
-        // לוגים כבר נטענים
-      }
-    }
-
-    function editLead(id) {
-      const lead = leads.find(l => l.id === id);
-      if (!lead) return;
-      
-      // פותח את הטופס עם הנתונים
-      document.getElementById('addLeadForm').classList.remove('hidden');
-      document.getElementById('newName').value = lead.name;
-      document.getElementById('newPhone').value = lead.phone;
-      document.getElementById('newCity').value = lead.city;
-      document.getElementById('newService').value = lead.service || '';
-      document.getElementById('newStatus').value = lead.status;
-      document.getElementById('newDescription').value = lead.description || '';
-      
-      // שומר את ה-ID לעריכה
-      document.getElementById('newLeadForm').dataset.editId = id;
-    }
-
-    function deleteLead(id) {
-      if (confirm('האם למחוק את הליד?')) {
-        leads = leads.filter(l => l.id !== id);
-        saveLeads();
-        renderLeadsTable();
-      }
-    }
 
     // אירועי כניסה
     document.getElementById('loginForm').addEventListener('submit', (e) => {
@@ -688,8 +727,7 @@
         currentUser = { username, password };
         document.getElementById('loginScreen').classList.add('hidden');
         document.getElementById('dashboard').classList.remove('hidden');
-        updateStats();
-        renderLeadsTable();
+        alert('ברוכים הבאים לפאנל ההגדרות!');
       } else {
         document.getElementById('loginError').style.display = 'block';
       }
@@ -703,59 +741,6 @@
       document.getElementById('loginForm').reset();
       document.getElementById('loginError').style.display = 'none';
     });
-
-    document.getElementById('addLeadBtn').addEventListener('click', () => {
-      document.getElementById('addLeadForm').classList.remove('hidden');
-      document.getElementById('newLeadForm').reset();
-      delete document.getElementById('newLeadForm').dataset.editId;
-    });
-
-    document.getElementById('cancelAddBtn').addEventListener('click', () => {
-      document.getElementById('addLeadForm').classList.add('hidden');
-    });
-
-    document.getElementById('refreshBtn').addEventListener('click', () => {
-      renderLeadsTable();
-      updateStats();
-    });
-
-    document.getElementById('newLeadForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const editId = e.target.dataset.editId;
-      
-      const leadData = {
-        name: formData.get('name'),
-        phone: formData.get('phone'),
-        city: formData.get('city'),
-        service: formData.get('service'),
-        status: formData.get('status'),
-        description: formData.get('description'),
-        date: new Date().toISOString()
-      };
-
-      if (editId) {
-        // עריכה
-        const index = leads.findIndex(l => l.id == editId);
-        if (index !== -1) {
-          leads[index] = { ...leads[index], ...leadData };
-        }
-      } else {
-        // הוספה
-        leadData.id = Date.now();
-        leads.push(leadData);
-      }
-
-      saveLeads();
-      renderLeadsList();
-      document.getElementById('addLeadForm').classList.add('hidden');
-      e.target.reset();
-    });
-
-    // טעינה ראשונית
-    loadLeads();
-    updateStats();
-    renderLeadsList();
   </script>
   <button id="creditsBtn" class="btn btn-ghost" style="position:fixed; right:1rem; bottom:1rem;">זכויות יוצרים</button>
   <div id="creditsModal" style="position:fixed; inset:0; background:#0008; display:none; align-items:center; justify-content:center; z-index:50">
