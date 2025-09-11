@@ -65,6 +65,7 @@
     .btn-primary { background:var(--brand); color:#fff }
     .btn-danger { background:var(--danger); color:#fff }
     .btn-ghost { background:#fff; color:#0f172a; border:1px solid #cbd5e1 }
+    .btn-ghost:hover { background:var(--brand-2); color:#fff; transform:translateY(-1px) }
     .hidden { display:none }
     .login-form { max-width:400px; margin:2rem auto; text-align:center }
     .dashboard { display:grid; gap:1rem }
@@ -148,7 +149,10 @@
     <div id="dashboard" class="hidden">
       <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:2rem;">
         <h1 style="margin:0; color:var(--brand);">הגדרות אתר - הנדימן בערד, מיתר ובאר שבע</h1>
-        <button id="logoutBtn" class="btn btn-danger">התנתק</button>
+        <div style="display:flex; gap:.8rem; align-items:center;">
+          <a href="index.html" class="btn btn-ghost" style="background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: white; text-decoration: none;">🏠 חזרה לאתר</a>
+          <button id="logoutBtn" class="btn btn-danger">התנתק</button>
+        </div>
       </div>
 
       <!-- סטטיסטיקות מתקדמות -->
